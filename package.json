@@ -1,0 +1,35 @@
+{
+  "name": "dev-connector",
+  "version": "1.0.0",
+  "description": "Social network for developers",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon --env-file=.env server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bindu1206/Dev-connector.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bindu1206/Dev-connector/issues"
+  },
+  "homepage": "https://github.com/bindu1206/Dev-connector#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "config": "^4.1.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.0",
+    "gravator": "^1.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10"
+  }
+}
