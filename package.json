@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server",
-    "server": "nodemon --env-file=.env server"
+    "server": "nodemon --env-file=./config/.env server"
   },
   "repository": {
     "type": "git",
