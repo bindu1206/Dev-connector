@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { connect } from 'react-redux';// To Work with Redux
-import { setAlert } from "../../actions/alert";// Action
+import { setAlert } from "../../actions/alert";// funciton with dispatch
 import PropTypes from 'prop-types'
 
 const Register = ({setAlert}) => {
@@ -16,12 +16,12 @@ const Register = ({setAlert}) => {
   const { name, email, password, password2 } = formData;
 
   const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });//e.target.name = value name hitting onchange
 
   const onSubmit = async(e) => {
     e.preventDefault();
     if(password !== password2){
-      setAlert('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger');// from props
     }else{
       console.log('SUCCESS');
     }
@@ -87,8 +87,10 @@ const Register = ({setAlert}) => {
   );
 };
 
-Register.propTypes = {
+Register.propTypes = {// Ensures the setAlert prop exists and is a function.
   setAlert: PropTypes.func.isRequired
 }
 
-export default connect(null, { setAlert })(Register);// connect(state, Action) -> To get setAlert in props
+export default connect(null, { setAlert })(Register);// Here Connect to connect actions to comoponent
+// null -> doesn't need state/data
+// setAlert -> automatically injects setAlert function as a prop.

@@ -6,12 +6,12 @@ import { Login } from "./components/auth/Login";
 import  Alert from "./components/layout/Alert";
 import  Register  from "./components/auth/Register";
 // Redux
-import { Provider } from "react-redux";
-import  store  from "./store";
-import { Fragment } from "react/jsx-runtime";
+import { Provider } from "react-redux";// Connects React app with Redux store
+import  store  from "./store";// Redux Store
 
 const App = () => (
 
+  // Wrapping = Every component inside can access Redux Store
  <Provider store={store}>
     <BrowserRouter>
       <>
