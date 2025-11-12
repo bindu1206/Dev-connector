@@ -5,12 +5,29 @@ import { Landing } from "./components/layout/Landing";
 import { Login } from "./components/auth/Login";
 import  Alert from "./components/layout/Alert";
 import  Register  from "./components/auth/Register";
+import { useEffect } from "react";
+import setAuthToken from "./utils/setAuthToken";
+
 // Redux
 import { Provider } from "react-redux";
 import  store  from "./store";
-import { Fragment } from "react/jsx-runtime";
+import { loadUser } from "./actions/auth";
 
-const App = () => (
+// setAuthToken() (outside React) runs immediately when the app starts
+// Purpose: to globally configure Axios with the auth token before any React code executes
+// Reason: if any Axios request runs before loadUser() is called, it will still include the token
+if(localStorage.token){
+    setAuthToken(localStorage.token);
+}
+
+const App = () => { 
+
+  // Runs setAuthToken() inside loadUser when React renders <App />
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);// on Load
+  
+  return (
 
  <Provider store={store}>
     <BrowserRouter>
@@ -43,6 +60,6 @@ const App = () => (
       </>
     </BrowserRouter>
   </Provider>
-);
+)};
 
 export default App;
