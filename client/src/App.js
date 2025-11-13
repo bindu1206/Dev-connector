@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import  Navbar  from "./components/layout/Navbar";
-import { Landing } from "./components/layout/Landing";
+import  Landing  from "./components/layout/Landing";
 import  Login  from "./components/auth/Login";
 import  Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
