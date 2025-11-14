@@ -7,6 +7,7 @@ import  Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import  Register  from "./components/auth/Register";
+import CreateProfile from "./components/profile-form/CreateProfile";
 import { useEffect } from "react";
 import setAuthToken from "./utils/setAuthToken";
 
@@ -67,6 +68,20 @@ const App = () => {
                       <section className="container">
                         <Alert />
                         <Dashboard />
+                      </section>
+                    )}
+                />
+              }
+          />
+
+          <Route
+            path="/create-profile"
+            element={
+                <PrivateRoute
+                    element={() => (
+                      <section className="container">
+                        <Alert />
+                        <CreateProfile />
                       </section>
                     )}
                 />
