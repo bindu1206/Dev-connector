@@ -8,6 +8,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import  Register  from "./components/auth/Register";
 import CreateProfile from "./components/profile-form/CreateProfile";
+import EditProfile from "./components/profile-form/EditProfile";
 import { useEffect } from "react";
 import setAuthToken from "./utils/setAuthToken";
 
@@ -82,6 +83,20 @@ const App = () => {
                       <section className="container">
                         <Alert />
                         <CreateProfile />
+                      </section>
+                    )}
+                />
+              }
+          />
+
+          <Route
+            path="/edit-profile"
+            element={
+                <PrivateRoute
+                    element={() => (
+                      <section className="container">
+                        <Alert />
+                        <EditProfile />
                       </section>
                     )}
                 />
