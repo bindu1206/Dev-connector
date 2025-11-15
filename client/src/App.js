@@ -16,6 +16,8 @@ import setAuthToken from "./utils/setAuthToken";
 import { Provider } from "react-redux";
 import  store  from "./store";
 import { loadUser } from "./actions/auth";
+import AddExperience from "./components/profile-form/AddExperience";
+import AddEducation from "./components/profile-form/AddEducation";
 
 // setAuthToken() (outside React) runs immediately when the app starts
 // Purpose: to globally configure Axios with the auth token before any React code executes
@@ -97,6 +99,34 @@ const App = () => {
                       <section className="container">
                         <Alert />
                         <EditProfile />
+                      </section>
+                    )}
+                />
+              }
+          />
+
+          <Route
+            path="/add-experience"
+            element={
+                <PrivateRoute
+                    element={() => (
+                      <section className="container">
+                        <Alert />
+                        <AddExperience />
+                      </section>
+                    )}
+                />
+              }
+          />
+
+          <Route
+            path="/add-education"
+            element={
+                <PrivateRoute
+                    element={() => (
+                      <section className="container">
+                        <Alert />
+                        <AddEducation />
                       </section>
                     )}
                 />

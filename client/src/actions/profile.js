@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { setAlert } from './alert';
 
-import { GET_PROFILE, PROFILE_ERROR } from './types';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
 
 
 // Get current users profile
@@ -62,4 +62,76 @@ export const createProfile = (formData, navigate, edit = false) => async (dispat
                 payload: { msg: error.response.statusText, status: error.response.status }
             })
         }
+}
+
+// Add Experience
+export const addExperience = (formData, navigate) => async (dispatch) => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
+
+        const res = await axios.put('api/profile/experience', formData, config);// profile
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Experience Added', 'success'));
+
+        navigate('/dashboard')
+        
+    } catch (error) {
+        const errors = error.response.data.errors;
+
+        if(errors){
+            errors.forEach(error => {
+                dispatch(setAlert(error.msg, 'danger'));                
+            });
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
+
+// Add Education
+export const addEducation = (formData, navigate) => async (dispatch) => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }
+
+        const res = await axios.put('api/profile/education', formData, config);// profile
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Education Added', 'success'));
+
+        navigate('/dashboard')
+        
+    } catch (error) {
+        const errors = error.response.data.errors;
+
+        if(errors){
+            errors.forEach(error => {
+                dispatch(setAlert(error.msg, 'danger'));                
+            });
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
 }
