@@ -18,6 +18,7 @@ import  store  from "./store";
 import { loadUser } from "./actions/auth";
 import AddExperience from "./components/profile-form/AddExperience";
 import AddEducation from "./components/profile-form/AddEducation";
+import Profiles from "./components/profiles/Profiles";
 
 // setAuthToken() (outside React) runs immediately when the app starts
 // Purpose: to globally configure Axios with the auth token before any React code executes
@@ -59,6 +60,16 @@ const App = () => {
               <section className="container">
                 <Alert />
                 <Login />
+              </section>
+            }
+          />
+
+          <Route
+            path="/profiles"
+            element={
+              <section className="container">
+                <Alert />
+                <Profiles />
               </section>
             }
           />
