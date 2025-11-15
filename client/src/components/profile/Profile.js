@@ -6,6 +6,8 @@ import { getProfileById } from "../../actions/profile";
 import { Link, useParams } from "react-router-dom";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
+import ProfileExperience from "./ProfileExperience";
+import ProfileEducation from "./ProfileEducation";
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
   const { id } = useParams();
@@ -33,6 +35,13 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
             <div class="profile-grid my-1">
                 <ProfileTop profile={profile}/>
                 <ProfileAbout profile={profile}/>
+                <div class="profile-exp bg-white p-2">
+                    <ProfileExperience profile={profile} />
+                </div>
+
+                <div class="profile-edu bg-white p-2">
+                  <ProfileEducation profile={profile} />
+                </div>
             </div>
         </>
       )}
