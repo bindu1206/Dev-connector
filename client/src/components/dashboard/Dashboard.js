@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import Experience from './Experience';
 import Education from './Education';
-import  { getCurrentProfile } from '../../actions/profile'
+import  { deleteAccount, getCurrentProfile } from '../../actions/profile'
 import DashboardActions from './DashboardActions';
 
-const Dashboard = ({ auth: { user }, profile: { profile, loading }, getCurrentProfile }) => {
+const Dashboard = ({ auth: { user }, profile: { profile, loading }, getCurrentProfile, deleteAccount }) => {
 
   useEffect(() => {
     getCurrentProfile();
@@ -23,6 +23,11 @@ const Dashboard = ({ auth: { user }, profile: { profile, loading }, getCurrentPr
           <DashboardActions/>
           <Experience experience={profile.experience}/>
           <Education education={profile.education}/>
+          <div className='my-2'>
+              <button className='btn btn-danger' onClick={() => deleteAccount()}>
+                  <i className='fas fa-user-minus'></i>{' '}Delete My Account
+              </button>
+          </div>
           </>
         ) : 
         (<>
@@ -39,7 +44,8 @@ const Dashboard = ({ auth: { user }, profile: { profile, loading }, getCurrentPr
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  deleteAccount: PropTypes.func.isRequired
 }
 
 const manageStateToProps = state => ({
@@ -47,4 +53,4 @@ const manageStateToProps = state => ({
     profile: state.profile
 })
 
-export default connect(manageStateToProps, { getCurrentProfile } )(Dashboard)
+export default connect(manageStateToProps, { getCurrentProfile, deleteAccount } )(Dashboard)

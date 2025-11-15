@@ -89,7 +89,7 @@ function AddEducation({ addEducation }) {
                 toggleDisabled(!toDateDisabled);
               }}
             />{" "}
-            Current Job
+            Current School
           </p>
         </div>
 
