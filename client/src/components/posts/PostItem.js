@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import dayjs from 'dayjs'
 import { connect } from "react-redux";
-import { addLike, removeLike } from "../../actions/post";
+import { addLike, removeLike, deletePost } from "../../actions/post";
 
 const PostItem = ({
   addLike,
   removeLike,
+  deletePost,
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date },
 }) => (
@@ -51,12 +52,16 @@ const PostItem = ({
               Discussion{' '}
                 {comments.length > 0 && (<span class='comment-count'>{comments.length}</span>)}
             </Link>
-            <button      
-            type="button"
-            class="btn btn-danger"
-          >
-            <i class="fas fa-times"></i>
-          </button>
+            {!auth.loading && user === auth.user._id && (
+                <button      
+                    type="button"
+                    class="btn btn-danger"
+                    onClick={() => deletePost(_id)}
+                >
+                    <i class="fas fa-times"></i>
+                </button>
+            )}
+            
           </div>
         </div>
     </>
@@ -66,13 +71,14 @@ PostItem.propTypes = {
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   addLike: PropTypes.func.isRequired,
-  removeLike: PropTypes.func.isRequired
+  removeLike: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { addLike, removeLike })(
+export default connect(mapStateToProps, { addLike, removeLike, deletePost })(
   PostItem
 );
