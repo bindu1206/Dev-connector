@@ -11,6 +11,7 @@ const PostItem = ({
   deletePost,
   auth,
   post: { _id, text, name, avatar, user, likes, comments, date },
+  showActions
 }) => (
     <>
         <div class="post bg-white p-1 my-1">
@@ -32,7 +33,7 @@ const PostItem = ({
                 Posted on {dayjs(date).format("YYYY/MM/DD")}
             </p>
 
-            <button 
+          {showActions && <><button 
                 onClick={() => addLike(_id)}
                 type="button" 
                 class="btn btn-light"
@@ -60,12 +61,17 @@ const PostItem = ({
                 >
                     <i class="fas fa-times"></i>
                 </button>
-            )}
+            )}</>}
+            
             
           </div>
         </div>
     </>
 )
+
+PostItem.defaultProps = {
+  showActions: true
+}
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
