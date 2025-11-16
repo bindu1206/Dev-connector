@@ -22,6 +22,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
+import { NotFound } from "./components/layout/NotFound";
 
 // setAuthToken() (outside React) runs immediately when the app starts
 // Purpose: to globally configure Axios with the auth token before any React code executes
@@ -183,6 +184,15 @@ const App = () => {
                     )}
                 />
               }
+          />
+
+          <Route
+            path="*"
+            element={
+              <section className="container">
+                <NotFound />
+              </section>
+            }
           />
 
         </Routes>
