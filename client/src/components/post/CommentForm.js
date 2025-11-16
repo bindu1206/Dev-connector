@@ -1,40 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import Spinner from "../layout/Spinner";
+import { connect } from "react-redux";
+import { addComment } from "../../actions/post";
 
-const CommentForm = ({ post }) => {
-  
-   if (!post) return <Spinner />;
-
-  const { text, name, avatar, user }  = post;
+const CommentForm = ({ addComment, postId }) => {
+    const [text, setText] = useState('')
 
   return (
     <>
-      <div className="post bg-white p-1 my-1">
-        <div>
-          <Link to={`/profile/${user}`}>
-            <img className="round-img" src={avatar} alt="" />
-            <h4>{name}</h4>
-          </Link>
-        </div>
-
-        <div>
-          <p className="my-1">{text}</p>
-        </div>
-      </div>
-
       <div className="post-form">
         <div className="bg-primary p">
           <h3>Leave A Comment</h3>
         </div>
 
-        <form className="form my-1">
+        <form className="form my-1" onSubmit={e => {
+          e.preventDefault();
+          addComment(postId, { text })
+          setText('')
+        }}>
           <textarea
             name="text"
             cols="30"
             rows="5"
             placeholder="Comment on this post"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
             required
           ></textarea>
           <input type="submit" className="btn btn-dark my-1" value="Submit" />
@@ -46,7 +36,7 @@ const CommentForm = ({ post }) => {
 
 
 CommentForm.propTypes = {
-  post: PropTypes.object.isRequired,
+  addComment: PropTypes.func.isRequired
 };
 
-export default CommentForm;
+export default connect(null, { addComment })(CommentForm);
